@@ -1,7 +1,7 @@
 # Session N — <topic>
 Date: YYYY-MM-DD
 
-## Opening message (verbatim)
+## Opening message (verbatim, in the user's language)
 > <the user's first message in this chat>
 
 ## Steps

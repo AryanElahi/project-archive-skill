@@ -35,6 +35,6 @@ All answers and small decisions: `04-sessions/`.
 1. **Session N+1 — <topic>:** <one line>. Plan: `03-plans/<plan>.md`.
 2. **Session N+2 — <topic>:** <one line>.
 
-## Suggested opening message for the next chat
+## Suggested opening message for the next chat (in the user's language — they paste it)
 Claude app: "Connect the folder <path>, read `00-start-here.md` and README first, then continue with the next step (<topic>)."
 Claude Code: "Read `project-archive/00-start-here.md` and README first, then continue with the next step (<topic>)."

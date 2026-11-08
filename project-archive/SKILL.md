@@ -1,6 +1,6 @@
 ---
 name: project-archive
-description: Keep a long-running project in one folder so every new chat can pick up exactly where the last one stopped — a start-here handoff file, standing rules, a status table, one log per session, plans, and saved drafts. Use this whenever the user wants work to continue across several chats or sessions, asks to "save everything in a folder", to "archive this conversation", to make a handoff / "start here" file, says the chat is getting long or heavy, or opens a chat with "connect the folder and read the start-here file" — even if they never say "archive". Works in the Claude app (connected folder) and in Claude Code (a folder in the project), in any language.
+description: Keep a long-running project in one folder so every new chat can pick up exactly where the last one stopped — a start-here handoff file, standing rules, a status table, one log per session, plans, and saved drafts. Use this whenever the user wants work to continue across several chats or sessions, asks to "save everything in a folder", to "archive this conversation", to make a handoff / "start here" file, says the chat is getting long or heavy, or opens a chat with "connect the folder and read the start-here file" — even if they never say "archive". Works in the Claude app (connected folder) and in Claude Code (a folder in the project); talks to the user in their language while keeping the archive in English.
 ---
 
 # Project Archive
@@ -25,7 +25,19 @@ The folder is the memory. The chat is disposable.
 
 Keep the numbers fixed even while some folders don't exist yet (a new project may start with only `03-` and `04-`), so the order never shifts and old references stay valid. When a folder is added, add it to the layout list in `README.md`.
 
-Name folders and files in the user's language (the Persian templates use `00-از-اینجا-شروع-کن.md`, `04-گفت‌وگوها/`, `جلسه`, and so on), with the digits the user writes in. Templates for both languages are in `templates/en/` and `templates/fa/`, with the same file names in each (`00-start-here.md`, `README.md`, `session-log.md`, `plan.md`); read the matching set when creating a file. The template file names are ASCII only because skill uploads reject non-ASCII paths — the files you create in the user's folder still take names in the user's language. A real, anonymized example of a mature folder is in `references/example.md` — read it when bootstrapping, so the result looks lived-in rather than generic.
+Templates are in `templates/` (`00-start-here.md`, `README.md`, `session-log.md`, `plan.md`); read the matching one when creating a file. A real, anonymized example of a mature folder is in `references/example.md` — read it when bootstrapping, so the result looks lived-in rather than generic.
+
+## Language: English archive, user's language in chat
+
+Write the archive in English — folder names, file names, the handoff, README, session logs and plans — whatever language the user speaks. Every new chat pays to read these files, and English takes roughly half the tokens of Persian or Arabic script (and fewer than most other non-Latin scripts), so an English archive keeps each session start cheap. Talk to the user in their own language as usual; only the stored bookkeeping is English.
+
+Keep the user's language where exact wording matters or where the text is for the user rather than for the next chat:
+- **Deliverables** stay in the language they're for: a Persian post is saved in Persian.
+- **The user's opening message** in each session log, quoted verbatim.
+- **The suggested opening message** for the next chat, since the user pastes it.
+- **A short quote** of a decision when the exact words carry meaning (a name, a phrase that must or must not appear publicly); otherwise translate the decision into English.
+
+If the user explicitly asks for the archive in their own language, do that instead. An existing folder already written in another language stays as it is; don't convert it unless the user asks.
 
 ## Where the folder lives
 
@@ -36,7 +48,7 @@ Name folders and files in the user's language (the Persian templates use `00-ا�
 
 1. **Find the folder.** If the user names it, connect it. If none exists, bootstrap (below).
 2. **Read `00-start-here.md`, then `README.md`.** Don't read everything else up front; the handoff points at what matters.
-   Then glance at the newest session log. If it was never closed (no "Left open" / «نیمه‌کاره» section, steps still "in progress", or it's newer than the handoff's "last updated" line), the last chat ended abruptly: bring `00-start-here.md` and the README history up to date from that log first, and tell the user in one line that you did.
+   Then glance at the newest session log. If it was never closed (no "Left open" section, steps still "in progress", or it's newer than the handoff's "last updated" line), the last chat ended abruptly: bring `00-start-here.md` and the README history up to date from that log first, and tell the user in one line that you did.
 3. **Adopt the standing rules for the whole session.** They are decisions the user already made, often with reasons that are no longer in view (a product name that isn't registered yet, a number the user chose to keep). Re-asking or breaking them is the main way this system fails.
 4. **Open a session log** in `04-sessions/` from the template, with the user's opening message recorded word for word.
 5. **Say in one or two lines** where things stand and what you're about to do, then do it. The handoff already said what's next; don't ask permission to start it unless the plan lists open questions — then ask those, all at once.
@@ -48,8 +60,8 @@ Log as you go, not at the end; a session can stop at any moment.
 - **Steps:** one row per meaningful step in the session log's `time | step | status` table, using the user's local time. Status words: done, waiting on user, approved, blocked.
 - **User decisions:** record each one close to verbatim under "Decisions", with its date if it overrides an older rule. If it should outlive the session, also add it to the standing rules in `00-start-here.md` right away.
 - **Outputs:** save every draft, text, image or file into its folder. Link external things (URLs, commit hashes, artifact links) in the log.
-- **Draft → approve → saved.** Show the user anything that will be published or sent before applying it. After it's applied, rename the draft to `<name>-saved.md` (`…-ذخیره‌شده.md`), so the folder always shows what is live.
-- **Never delete.** Before replacing a file, copy it to `<name>-previous.md` (`…-قبلی.md`). Retire files by renaming with a `_to_delete_` prefix; the user empties them.
+- **Draft → approve → saved.** Show the user anything that will be published or sent before applying it. After it's applied, rename the draft to `<name>-saved.md`, so the folder always shows what is live.
+- **Never delete.** Before replacing a file, copy it to `<name>-previous.md`. Retire files by renaming with a `_to_delete_` prefix; the user empties them.
 - **Checkpoint after each finished piece.** When a piece of work is done (a section published, a file delivered, a decision settled), update its status row and the suggested opening message in `00-start-here.md` right then, not only at session end. If the chat dies without warning, the next one still finds a correct handoff and a ready opening line.
 - **Gotchas** that cost time ("typing into this site's text boxes drops letters; insert text and read it back") go into the technical notes in `00-start-here.md`. These save the next session the most time.
 
@@ -73,7 +85,7 @@ Do this when the work stops, when the user says the chat is getting long or heav
 
 ## Bootstrapping a new project
 
-Ask only what you can't infer, in one go: what the project is and its goal, where the folder should live, and which language to use. Then create `00-start-here.md`, `README.md`, `03-plans/` and `04-sessions/` with the first session log; create the other folders only when there's something to put in them. Fill the handoff with what the conversation already contains — owner, goal, any rules the user stated — rather than leaving placeholders. If there's no source of truth yet, say so and name what will become one once it's approved; if there are no technical notes yet, write "none yet" rather than deleting the section. If the project already has material scattered in a chat, capture it: decisions to standing rules, finished pieces to output folders, the first plan to `03-plans/`.
+Ask only what you can't infer, in one go: what the project is and its goal, and where the folder should live. Then create `00-start-here.md`, `README.md`, `03-plans/` and `04-sessions/` with the first session log; create the other folders only when there's something to put in them. Fill the handoff with what the conversation already contains — owner, goal, any rules the user stated — rather than leaving placeholders. If there's no source of truth yet, say so and name what will become one once it's approved; if there are no technical notes yet, write "none yet" rather than deleting the section. If the project already has material scattered in a chat, capture it: decisions to standing rules, finished pieces to output folders, the first plan to `03-plans/`.
 
 ## What not to store
 
