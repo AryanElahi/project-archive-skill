@@ -25,7 +25,7 @@ The folder is the memory. The chat is disposable.
 
 Keep the numbers fixed even while some folders don't exist yet (a new project may start with only `03-` and `04-`), so the order never shifts and old references stay valid. When a folder is added, add it to the layout list in `README.md`.
 
-Name folders and files in the user's language (the Persian templates use `00-از-اینجا-شروع-کن.md`, `04-گفت‌وگوها/`, `جلسه`, and so on), with the digits the user writes in. Templates for both languages are in `templates/en/` and `templates/fa/`; read the matching set when creating a file. A real, anonymized example of a mature folder is in `references/example.md` — read it when bootstrapping, so the result looks lived-in rather than generic.
+Name folders and files in the user's language (the Persian templates use `00-از-اینجا-شروع-کن.md`, `04-گفت‌وگوها/`, `جلسه`, and so on), with the digits the user writes in. Templates for both languages are in `templates/en/` and `templates/fa/`, with the same file names in each (`00-start-here.md`, `README.md`, `session-log.md`, `plan.md`); read the matching set when creating a file. The template file names are ASCII only because skill uploads reject non-ASCII paths — the files you create in the user's folder still take names in the user's language. A real, anonymized example of a mature folder is in `references/example.md` — read it when bootstrapping, so the result looks lived-in rather than generic.
 
 ## Where the folder lives
 
