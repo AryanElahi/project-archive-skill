@@ -50,7 +50,16 @@ Log as you go, not at the end; a session can stop at any moment.
 - **Outputs:** save every draft, text, image or file into its folder. Link external things (URLs, commit hashes, artifact links) in the log.
 - **Draft → approve → saved.** Show the user anything that will be published or sent before applying it. After it's applied, rename the draft to `<name>-saved.md` (`…-ذخیره‌شده.md`), so the folder always shows what is live.
 - **Never delete.** Before replacing a file, copy it to `<name>-previous.md` (`…-قبلی.md`). Retire files by renaming with a `_to_delete_` prefix; the user empties them.
+- **Checkpoint after each finished piece.** When a piece of work is done (a section published, a file delivered, a decision settled), update its status row and the suggested opening message in `00-start-here.md` right then, not only at session end. If the chat dies without warning, the next one still finds a correct handoff and a ready opening line.
 - **Gotchas** that cost time ("typing into this site's text boxes drops letters; insert text and read it back") go into the technical notes in `00-start-here.md`. These save the next session the most time.
+
+## Watch how heavy the chat is
+
+You can't see an exact meter of how full the conversation is, so watch the signs: a long back-and-forth, large files or pages read in full, many tool calls, long outputs repeated. When they pile up, say so in one line and suggest closing after the current piece — for example "This chat is getting heavy; I suggest we close the session after this and continue in a new one." The user decides. If they keep going, checkpoint more often. Say it once, and again only if it gets clearly worse; a warning that repeats every turn is noise.
+
+## Keep the handoff lean
+
+Every new chat pays to read `00-start-here.md`, so it holds the current state, not the history. A finished part gets one line in the status table pointing to where its detail lives (a session log or a `-saved` file); full text is for what's still open, the standing rules and the technical notes. When something finished has grown past a few lines, move the detail into the session log or the part's own file and leave the pointer. Aim for a file that reads in a minute or two — roughly 1,500 words at most.
 
 ## Session end
 

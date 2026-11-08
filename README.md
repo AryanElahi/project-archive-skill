@@ -22,6 +22,8 @@ my-project/
 
 - **Session start:** reads only the handoff and README, follows the standing rules, opens a session log, and gets going. If the last chat ended abruptly, it catches the handoff up from that chat's log first.
 - **During the session:** logs each step as it happens, records your decisions close to your own words, saves every output, shows you anything public before it's applied, and never deletes — old files are kept as `-previous` or set aside with a `_to_delete_` prefix.
+- **Heavy chats:** watches for signs the chat is getting long and tells you once, suggesting a clean stop. After each finished piece it updates the handoff right away, so even a chat that dies without warning leaves a correct next step.
+- **Lean handoff:** finished work shrinks to one line in the start-here file, with the detail in the session logs, so starting a new chat stays cheap.
 - **Session end** (or when you say the chat is getting long): closes the log, updates the status table and next step, and gives you one sentence to paste into the next chat.
 - **New project:** asks only what it can't infer (what, where, which language) and builds the folder from what the chat already contains.
 
